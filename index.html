@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>New Year Wish & Commitment Card</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/dom-to-image-more@3.3.0/dist/dom-to-image-more.min.js"></script>
+
+<style>
+:root{
+  --bg:#020617;
+  --gold:#fbbf24;
+  --gold-dark:#b45309;
+  --muted:#94a3b8;
+  --preview-scale: 0.4; 
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#0f172a;
+  font-family:'Inter',sans-serif;
+  color:#fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* MAIN LAYOUT: Split Screen */
+.main-container {
+  display: flex;
+  flex-direction: row; /* Side by side */
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* LEFT SIDE: Inputs */
+.controls-section {
+  flex: 1;
+  background: #1e293b;
+  padding: 32px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.controls-section h2 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  color: var(--gold);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.controls-section input {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #020617;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+.controls-section input:focus {
+  border-color: var(--gold);
+}
+
+.download-btn {
+  margin-top: 10px;
+  padding: 16px;
+  background: var(--gold);
+  border: none;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  color: #000;
+  transition: all 0.2s;
+}
+
+.download-btn:hover {
+  background: #fcd34d;
+  transform: translateY(-2px);
+}
+
+/* RIGHT SIDE: Preview */
+.preview-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-wrapper {
+  width: calc(1080px * var(--preview-scale));
+  height: calc(1920px * var(--preview-scale));
+  position: relative;
+  /* Visual border to show the card edges */
+  outline: 1px solid rgba(255,255,255,0.1);
+}
+
+/* THE ACTUAL CARD (Hidden scale for capture) */
+#capture-area {
+  width: 1080px;
+  height: 1920px;
+  padding: 80px 70px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(251,191,36,.18), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(251,191,36,.15), transparent 40%),
+    var(--bg);
+  display: grid;
+  grid-template-rows: auto 1px auto 1px auto;
+  gap: 80px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  transform: scale(var(--preview-scale));
+  overflow: hidden;
+}
+
+/* Card Design Elements */
+#capture-area::after {
+  content:""; position:absolute; inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:26px 26px; pointer-events:none;
+}
+.divider { height:1px; background:linear-gradient(to right, transparent, rgba(251,191,36,.35), transparent); }
+.left { text-align:center; }
+.left small { letter-spacing:5px; color:var(--gold); font-weight:800; }
+.left h1 { margin:28px 0 20px; font-size:84px; font-weight:900; line-height:1.1; }
+.left h1 span { color:var(--gold); }
+.left p { font-size:26px; line-height:1.7; color:var(--muted); }
+.center { text-align:center; }
+.year { font-size:280px; font-weight:900; line-height:1; background:linear-gradient(180deg,var(--gold),var(--gold-dark)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.name { margin-top:18px; font-size:38px; font-weight:800; }
+.identity { margin-top:8px; font-size:14px; letter-spacing:6px; color:var(--muted); }
+.right-side { display:flex; justify-content:center; }
+.commit { width:100%; background:rgba(255,255,255,.06); padding:44px 48px; border-left:6px solid var(--gold); }
+.commit h2 { margin:20px 0 30px; font-size:46px; font-weight:900; }
+.commit ul { list-style:none; padding:0; margin:0; }
+.commit li { font-size:26px; margin-bottom:20px; }
+.commit li span { color:var(--gold); font-weight:900; }
+.footer { position:absolute; left:70px; right:70px; bottom:60px; display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,.1); padding-top:18px; font-size:15px; color:var(--muted); }
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .controls-section {
+    width: 100%;
+  }
+  :root {
+    --preview-scale: 0.3;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="main-container">
+  
+  <div class="controls-section">
+    <h2>Customize Your Card</h2>
+    
+    <div class="input-group">
+      <label>Full Name</label>
+      <input id="nameInput" type="text" placeholder="Enter your name">
+    </div>
+    
+    <div class="input-group">
+      <label>Your 2026 Commitment</label>
+      <input id="commitInput" type="text" placeholder="e.g. Master React.js">
+    </div>
+
+    <button class="download-btn" onclick="downloadCard()">Download High-Res PNG</button>
+  </div>
+
+  <div class="preview-section">
+    <div class="preview-wrapper">
+      <div id="capture-area">
+        <div class="left">
+          <small>NEW YEAR WISH</small>
+          <h1>New Year.<br>New <span>Intent.</span></h1>
+          <p>Not just another year, but a decision to grow, build, and begin — intentionally.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="center">
+          <div class="year">2026</div>
+          <div id="displayName" class="name">Fellow</div>
+          <div class="identity">INOVUS LABS IEDC</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="right-side">
+          <div class="commit">
+            <small>PERSONAL COMMITMENT</small>
+            <h2>This year, I choose to</h2>
+            <ul>
+              <li><span>→</span> Learn with curiosity</li>
+              <li><span>→</span> Build with courage</li>
+              <li><span>→</span> <span id="customCommit">Start — no excuses</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div><strong>INOVUS LABS</strong><br>IEDC Campus Chapter</div>
+          <div>@inovuslabs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const nameInput=document.getElementById("nameInput");
+const commitInput=document.getElementById("commitInput");
+const displayName=document.getElementById("displayName");
+const customCommit=document.getElementById("customCommit");
+
+nameInput.oninput=e=>{ displayName.textContent=e.target.value||"Fellow"; };
+commitInput.oninput=e=>{ customCommit.textContent=e.target.value||"Start — no excuses"; };
+
+async function downloadCard(){
+  const btn = document.querySelector('.download-btn');
+  btn.innerText = "Processing...";
+  
+  await document.fonts.ready;
+  
+  // Capture logic
+  domtoimage.toPng(document.getElementById("capture-area"),{
+    width: 1080,
+    height: 1920,
+    style: {
+      transform: 'scale(1)', 
+      transformOrigin: 'top left'
+    }
+  }).then(url=>{
+    const a=document.createElement("a");
+    a.href=url;
+    a.download=`Commitment_2026_${displayName.textContent}.png`;
+    a.click();
+    btn.innerText = "Download High-Res PNG";
+  });
+}
+</script>
+
+</body>
+</html>
