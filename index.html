@@ -180,32 +180,38 @@
         .portrait .commit { 
           border-left: none; 
           border-top: 8px solid var(--gold); 
-          width: 600px;
+          width: 550px;
           text-align: left; 
         }
-       
 
+        .landscape .left p{
+          margin: 20px 0 0 0;
+        }
+        
         /* Shared Element Styling */
         .left small { 
           letter-spacing: 5px; 
           color: var(--gold); 
           font-weight: 800; 
           font-size: 18px; 
+          white-space: nowrap;
         }
         .left h1 { 
           font-size: 70px; 
           font-weight: 900; 
           line-height: 1.1; 
           margin: 20px 0; 
+          white-space: nowrap;
         }
         .left h1 span { 
           color: var(--gold); 
         }
         .left p { 
           font-size: 26px; 
-          line-height: 1.8; 
+          line-height: 1.6; 
           color: var(--muted); 
           margin: 20px 0 0 0;
+          /* white-space: nowrap; */
         }
 
         .year {
@@ -227,6 +233,7 @@
           font-size: 16px; 
           letter-spacing: 6px; 
           color: var(--muted); 
+          white-space: nowrap;
         }
 
         .commit { background: rgba(255,255,255,.05); 
