@@ -180,12 +180,20 @@
         .portrait .commit { 
           border-left: none; 
           border-top: 8px solid var(--gold); 
-          width: 550px;
+          width: 600px;
           text-align: left; 
+        }
+
+        .portrait .commit h2{
+          white-space: nowrap;
         }
 
         .landscape .left p{
           margin: 20px 0 0 0;
+        }
+
+        .landscape .name {
+          margin-left: -50px;  
         }
         
         /* Shared Element Styling */
@@ -227,6 +235,7 @@
           font-size: 48px; 
           font-weight: 800; 
           text-transform: uppercase; 
+          white-space: nowrap;        
         }
         .identity { 
           margin-top: 10px; 
