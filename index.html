@@ -288,9 +288,125 @@
             .controls-section { flex-direction: column; align-items: stretch; }
             .mode-toggle button { flex: 1; }
         }
+
+        .description-box {
+  width: 100%;
+  max-width: 900px;
+  background: linear-gradient(135deg, rgba(251,191,36,0.08) 0%, rgba(180,83,9,0.05) 100%);
+  border: 1px solid rgba(251,191,36,0.2);
+  padding: 40px 45px;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+.description-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-dark), var(--gold));
+}
+
+.description-box h3 {
+  margin: 0 0 20px 0;
+  font-size: 28px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.description-box p {
+  margin: 14px 0;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #cbd5e1;
+}
+
+.description-box strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.description-box ul {
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 16px;
+}
+
+.description-box li {
+  font-size: 16px;
+  color: #e2e8f0;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  border-left: 3px solid var(--gold);
+  transition: all 0.3s ease;
+}
+
+.description-box li:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateX(4px);
+  border-left-width: 4px;
+}
+
+.description-box .tag-line {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 16px;
+  color: #e2e8f0;
+  line-height: 1.7;
+}
+
+.description-box .tag-line strong {
+  color: var(--gold);
+  font-weight: 800;
+}
+
     </style>
 </head>
 <body>
+  <div style="margin-bottom: 20px;">
+    <a href="https://inovuslabs.org/"><img src="logo white.png" alt="" height="50em" ></a>
+  </div>  
+  <div class="description-box">
+    <h3>Create Your 2026 Resolution Card</h3>
+    <p>A new year isn’t just a date change — it’s a decision. 
+      Transform your New Year intentions into a beautifully crafted commitment card.
+      Design, download, and share your journey with the world.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin: 32px 0;">
+      <div style="text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 12px;">✍️</div>
+        <strong style="display: block; margin-bottom: 8px; font-size: 18px;">Personalize</strong>
+        <span style="color: var(--muted); font-size: 15px;">Add your name and commitment</span>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 12px;">🎨</div>
+        <strong style="display: block; margin-bottom: 8px; font-size: 18px;">Choose Layout</strong>
+        <span style="color: var(--muted); font-size: 15px;">Portrait or Landscape mode</span>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 12px;">⬇️</div>
+        <strong style="display: block; margin-bottom: 8px; font-size: 18px;">Download & Share</strong>
+        <span style="color: var(--muted); font-size: 15px;">Perfect for social media</span>
+      </div>
+    </div>
+
+    <p class="tag-line">
+      Ready to make 2026 your year? Tag <strong>@inovuslabs</strong> when you share your commitment.
+    </p>
+  </div>
 
     <div class="controls-section">
         <div class="toggle-container">
