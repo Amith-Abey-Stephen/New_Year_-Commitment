@@ -480,6 +480,9 @@
             document.getElementById('btnLandscape').classList.toggle('active', mode === 'landscape');
             document.getElementById('btnPortrait').classList.toggle('active', mode === 'portrait');
             handleResize();
+            gtag('event', 'layout_change', {
+              layout: mode
+           });
         }
 
         function handleResize() {
@@ -515,11 +518,17 @@
             const width = currentMode === 'landscape' ? 1920 : 1080;
             const height = currentMode === 'landscape' ? 1080 : 1920;
 
+            gtag('event', 'card_generate', {
+              layout: currentMode
+            });
             domtoimage.toPng(captureArea, {
                 width: width,
                 height: height,
                 style: { transform: 'scale(1)', left: '0', top: '0' }
             }).then(url => {
+                gtag('event', 'card_downloaded', {
+                  layout: currentMode
+                });
                 const a = document.createElement("a");
                 a.href = url;
                 a.download = `Inovus_2026_${currentMode}_${displayName.textContent}.png`;
